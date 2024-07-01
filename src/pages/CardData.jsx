@@ -166,10 +166,10 @@ const CardData = () => {
                     <tr key={item.id} className="w-full  flex ">
                       <td className="w-[50%]">
                         <span>
-                          <span>{item.name}</span>
+                          {/* <span>{item.name}</span> */}
                         </span>
                       </td>
-                      <td className="w-[50%] text-[#b2b4bc]">{item.value}</td>
+                      {/* <td className="w-[50%] text-[#b2b4bc]">{item.value}</td> */}
                     </tr>
                   ))}
                 </tbody>
@@ -184,7 +184,7 @@ const CardData = () => {
             <div className="tags mt-4">
               {oneData?.tags ? (
                 <span className="tag text-[26px] items-end flex flex-wrap gap-x-2 text-[#1DBE60] font-medium">
-                  tags:
+                  тег:
                   {oneData?.tags?.map((item) => (
                     <span
                       key={item?.id}
