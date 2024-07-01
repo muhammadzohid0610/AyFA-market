@@ -31,7 +31,7 @@ const Cart = () => {
       const totalPrice = data.reduce((acc, item) => acc + (parseFloat(item.price.slice(0, -2)) * item.count), 0);
   
       const message = encodeURIComponent(`Здравствуйте, я хотел заказать:\n${cartDetails}\nОбщая цена: ${totalPrice}`);
-      window.location.href = `https://api.whatsapp.com/send?phone=996554342334&text=${message}`;
+      window.location.href = `https://api.whatsapp.com/send?phone=996999000450&text=${message}`;
   };
 
 
