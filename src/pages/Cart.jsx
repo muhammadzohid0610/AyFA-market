@@ -22,54 +22,17 @@ const Cart = () => {
     setRadio(!radio);
     radio ? setId([]) : setId(data?.map((item) => item.id));
   };
-
-
   const handleOrder = () => {
-    // Calculate cart details and total price
-    const cartDetails = data
-      .map(
-        (item) =>
-          `\n Название: ${item.name} \n Количество: ${item.count} \n Цена: ${item.price.slice(
-            0,
-            -2
-          )} \n`
-      )
-      .join("\n");
 
-    const totalPrice = data.reduce(
-      (acc, item) => acc + parseFloat(item.price.slice(0, -2)) * item.count,
-      0
-    );
-
-    // Encode message for Telegram
-    const message = encodeURIComponent(
-      `Здравствуйте, я хочу сделать заказ:\n${cartDetails}\nОбщая цена: ${totalPrice}`
-    );
-
-    // Replace with the provided Telegram group invite link
-    const groupInviteLink = "https://t.me/asdasdfs3wadf";
-
-    // Open the Telegram group invite link to join the group
-    const joinGroupWindow = window.open(groupInviteLink, "_blank");
-
-    // Wait for a short time (e.g., 3 seconds) to ensure the group join process starts
-    setTimeout(() => {
-      // Open a link to pre-fill the message in Telegram after joining the group
-      if (joinGroupWindow && !joinGroupWindow.closed) {
-        joinGroupWindow.location.replace(
-          `https://t.me/share/url?url=${groupInviteLink}&text=${message}`
-        );
-      } else {
-        // Fallback: Open a new window if joinGroupWindow is closed or blocked
-        window.open(
-          `https://t.me/share/url?url=${groupInviteLink}&text=${message}`,
-          "_blank"
-        );
-      }
-    }, 3000); // Adjust the delay as needed
+      const cartDetails = data
+        .map(item => `\n Название: ${item.name} \n Количество: ${item.count} \n Цена: ${item.price.slice(0, -2)} \n`)
+        .join("\n");
+  
+      const totalPrice = data.reduce((acc, item) => acc + (parseFloat(item.price.slice(0, -2)) * item.count), 0);
+  
+      const message = encodeURIComponent(`Здравствуйте, Я хотел заказать:\n${cartDetails}\nОбщая цена: ${totalPrice}`);
+      window.location.href = `https://api.whatsapp.com/send?phone=996554342334&text=${message}`;
   };
-
-
 
 
   return (

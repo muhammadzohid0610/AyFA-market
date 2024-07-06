@@ -183,11 +183,11 @@ header {
   .cards {
     display: grid;
     gap: 15px;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     width: 100%;
 
     .card {
-      min-height: 400px;
+      min-height: 200px;
 
       .swiper {
         width: 100%;
