@@ -36,7 +36,7 @@ const Footer = () => {
           </div>
           <div className="footer__content">
             <div className='text-[#FDFDFD]'>
-            Д.Курманжан 515
+           Курманжан Датка 525
             </div>
             <div className="flex flex-col	gap-3 mt-5">
              
@@ -54,7 +54,7 @@ const Footer = () => {
           </div>
           <div className="footer__content">
             <div className='text-[#FDFDFD]'>
-              Category 3
+              
             </div>
             <div className="flex flex-col	gap-3 mt-5">
            
