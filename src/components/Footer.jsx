@@ -17,7 +17,7 @@ const Footer = () => {
           </div>
           <div className="footer__content">
             <div className='text-[#FDFDFD]'>
-            Время работы 8:30-22:00
+            Время работы 8:30-21:00
             </div>
             <div className="flex flex-col	gap-3 mt-5">
               
