@@ -3,7 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { getProducts, setCurrentPage } from "../store/slices/Product";
 import Logout from "./Logout";
+
 const ulStyle = "material-symbols-outlined text-2xl text-[#b2b4bc]";
+
 const Header = () => {
   const [state, setstate] = useState(false);
   const [user, setUser] = useState(
@@ -17,7 +19,7 @@ const Header = () => {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const { data } = useSelector((state) => state.cart);
   const { search } = useParams();
-  const [searchValue, setsearchValue] = useState(search ? search :"" );
+  const [searchValue, setsearchValue] = useState(search ? search : "");
 
   useEffect(() => {
     const handleResize = () => setScreenWidth(window.innerWidth);
@@ -65,21 +67,21 @@ const Header = () => {
     <>
       <header>
         <div className="max-w-[1200px] px-[10px] items-center flex justify-between mx-auto py-6 relative">
-          <h3 className="text-5xl	 cursor-pointer font-medium	text-[#22a357] pb-[20px]">
+          <h3 className="text-5xl cursor-pointer font-medium text-[#22a357] pb-[20px]">
             <Link to="/"> Ayfa</Link>
           </h3>
 
           <nav>
             <ul className="flex gap-8 items-center flex-wrap">
-              {screenWidth < 550 && ( 
+              {screenWidth < 550 && (
                 <li
                   ref={linkRef}
                   onClick={() =>
                     screenWidth < 550 && setStateSearch(!StateSearch)
                   }
-                  className="flex flex-col  cursor-pointer items-center justify-between"
+                  className="flex flex-col cursor-pointer items-center justify-between"
                 >
-                  <span className={`${ulStyle}  text-[#b2b4bc]`}>
+                  <span className={`${ulStyle} text-[#b2b4bc]`}>
                     {!StateSearch ? "search" : "close"}
                   </span>
                   <span className="text-base text-[#b2b4bc]">Поиск</span>
@@ -87,9 +89,9 @@ const Header = () => {
               )}
 
               <li
-                className={`search w-[500px]  cursor-pointer  gap-2 flex  p-2 border rounded-[30px] border-[1.5px]  border-[#1DBE60]
-                 ${screenWidth < 550 && "hidden"}
-                  `}
+                className={`search w-[500px] cursor-pointer gap-2 flex p-2 border rounded-[30px] border-[1.5px] border-[#1DBE60] ${
+                  screenWidth < 550 && "hidden"
+                }`}
               >
                 <input
                   placeholder="Поиск"
@@ -97,20 +99,20 @@ const Header = () => {
                   value={searchValue}
                   className={`${
                     StateSearch && "active"
-                  } placeholder:text-[#b2b4bc]  cursor-pointer font-semibold  text-[#b2b4bc] pl-[10px]  w-full `}
+                  } placeholder:text-[#b2b4bc] cursor-pointer font-semibold text-[#b2b4bc] pl-[10px] w-full`}
                 />
-                <span className={ulStyle}>Search</span>
+                <span className={ulStyle}>search</span>
               </li>
 
               <li>
                 <Link
                   to="cart"
-                  className=" relative flex flex-col items-center justify-between"
+                  className="relative flex flex-col items-center justify-between"
                 >
                   <span className={ulStyle}>shopping_cart</span>
                   <span className="text-base text-[#b2b4bc]">Корзина</span>
                   {data.length > 0 && (
-                    <span className="absolute top-[-5px] left-[90%]  text-[#1DBE60]  p-[2px]">
+                    <span className="absolute top-[-5px] left-[90%] text-[#1DBE60] p-[2px]">
                       {data.length}
                     </span>
                   )}
@@ -123,7 +125,7 @@ const Header = () => {
                     className={`flex flex-col items-center justify-between `}
                   >
                     {user?.avatar ? (
-                      <div className="w-[32px] ">
+                      <div className="w-[32px]">
                         <img
                           className="w-full border-[#1DBE60] border rounded-full"
                           src={user?.avatar}
@@ -131,7 +133,7 @@ const Header = () => {
                         />
                       </div>
                     ) : (
-                      <span className={`${ulStyle}  text-[#b2b4bc]`}>
+                      <span className={`${ulStyle} text-[#b2b4bc]`}>
                         account_circle
                       </span>
                     )}
@@ -142,28 +144,27 @@ const Header = () => {
                 <li>
                   <Link
                     to="/login"
-                    className=" flex  flex-col items-center justify-between"
+                    className="flex flex-col items-center justify-between"
                   >
                     <span className={`${ulStyle} text-[#b2b4bc]`}>
                       account_circle
                     </span>
-                    <span className="text-base  text-[#b2b4bc]">Войти</span>
+                    <span className="text-base text-[#b2b4bc]">Войти</span>
                   </Link>
                 </li>
               )}
-              
             </ul>
           </nav>
           {StateSearch && (
             <div
               ref={searchRef}
-              className="mini__search z-[1] justify-between items-center bg-[#d5e0da1a] rounded-[10px] h-[55px] w-[95%] absolute bottom-[-45px] px-4 left-[2.5%] "
+              className="mini__search bg-[#109345]  z-[1] justify-between items-center bg-[#d5e0da1a] rounded-[10px] h-[55px] w-[95%] absolute bottom-[-45px] px-4 left-[2.5%]"
             >
-              <input
-                onChange={(e) => setsearchValue(e)}
+              <input 
+                onChange={(e) => setsearchValue(e.target.value)}
                 value={searchValue}
                 placeholder="Search"
-                className=" w-[90%] h-[100%] text-[#b2b4bc] placeholder:text-[#b2b4bc] font-semibold"
+                className="w-[90%] h-[100%] text-[#fff] placeholder:text-[#fff]  font-semibold"
               />
               <span className={ulStyle}>search</span>
             </div>

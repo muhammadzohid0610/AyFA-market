@@ -87,7 +87,6 @@ const CardData = () => {
           <div className="content box3 bg-[#d5e0da1a] border-[#1DBE60] border rounded-[10px] p-4 flex flex-col justify-end">
             <h1 className="w-full py-[10px] text-[#b2b4bc] font-medium pb-[20px] ">
               <span className="text-[#1DBE60]">Цена:</span> {oneData?.price}
-              USD
             </h1>
             <button
               onClick={() => addTooCart()}

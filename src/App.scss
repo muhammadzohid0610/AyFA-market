@@ -173,9 +173,6 @@ header {
 
 // header end
 .diiiv {
-  max-height: 800px;
-  overflow-y: scroll;
-
   &::-webkit-scrollbar {
     display: none;
   }
@@ -322,8 +319,6 @@ header {
 
 .Cart {
   .Cart__cards {
-    max-height: 660px;
-    overflow-y: scroll;
 
     &::-webkit-scrollbar {
       display: none;

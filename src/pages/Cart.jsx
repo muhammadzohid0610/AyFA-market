@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import OneCart from "../components/OneCart";
 import { useDispatch, useSelector } from "react-redux";
-import Login from "../pages/login"
 import { removeCarts } from "../store/slices/Cart";
 import Purchase from "../components/Purchase";
 import { Link } from "react-router-dom";
 import CartImage from "../components/CartImage";
-import { register } from "swiper/element";
 
 const Cart = () => {
   const [radio, setRadio] = useState(false);
@@ -14,6 +12,8 @@ const Cart = () => {
   const [orderState, setOrderState] = useState(false);
   const [notUser, setNotUser] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [showModal, setShowModal] = useState(false); // State for showing the address modal
+  const [address, setAddress] = useState(""); // State to store the user's address
   const data = useSelector((state) => state.cart.data);
   const [id, setId] = useState(radio ? data?.map((item) => item.id) : []);
   const dispatch = useDispatch();
@@ -22,19 +22,50 @@ const Cart = () => {
     setRadio(!radio);
     radio ? setId([]) : setId(data?.map((item) => item.id));
   };
+
   const handleOrder = () => {
-
-      const cartDetails = data
-        .map(item => `\n Название: ${item.name} \n Количество: ${item.count} \n Цена: ${item.price.slice(0, -2)} \n`)
-        .join("\n");
-  
-      const totalPrice = data.reduce((acc, item) => acc + (parseFloat(item.price.slice(0, -2)) * item.count), 0);
-  
-      const message = encodeURIComponent(`Здравствуйте, Я хотел заказать:\n${cartDetails}\nОбщая цена: ${totalPrice}`);
-      window.location.href = `https://api.whatsapp.com/send?phone=996554342334&text=${message}`;
+    setShowModal(true); 
   };
-
-
+  const submitOrder = () => {
+    const cartDetails = data
+      .map(
+        (item) =>
+          `\n Название: ${item.name} \n Количество: ${item.count} \n Цена: ${item.price.slice(
+            0,
+            -2
+          )} \n`
+      )
+      .join("\n");
+  
+    const totalPrice = data.reduce(
+      (acc, item) =>
+        acc + parseFloat(item.price.slice(0, -2)) * item.count,
+      0
+    );
+  
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+        const message = encodeURIComponent(
+          `Здравствуйте, Я хотел заказать:\n${cartDetails}\nОбщая цена: ${totalPrice}\nАдрес доставки: ${address}\nМоё местоположение: https://maps.google.com/maps?q=${latitude},${longitude}`
+        );
+  
+        window.open(`https://api.whatsapp.com/send?phone=996554342334&text=${message}`, '_blank');
+  
+        setShowModal(false);
+        setAddress("");
+      },
+      (error) => {
+        console.error('Error fetching location:', error);
+      }
+    );
+  };
+  
+  const closeModal = () => {
+    setShowModal(false);
+    setAddress("");
+  };
+  
   return (
     <>
       <div
@@ -128,12 +159,49 @@ const Cart = () => {
           </div>
         )}
       </div>
+
       {orderState && (
         <Purchase
           success={success}
           setSuccess={setSuccess}
           setOrderState={setOrderState}
         />
+      )}
+
+      {/* Address Modal */}
+      {showModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-8 rounded-lg w-96">
+            <h2 className="text-2xl font-bold mb-4">Введите ваш адрес</h2>
+            <input
+              type="text"
+              className="border border-gray-300 rounded-md px-3 py-2 w-full mb-4"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              placeholder="Введите ваш адрес"
+            />
+            <div className="flex justify-end">
+              <button
+                onClick={submitOrder}
+                className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-md mr-2"
+              >
+              готово
+              </button>
+              <button
+                onClick={submitOrder}
+                className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-md mr-2"
+              >
+                 точное локация
+              </button>
+              <button
+                onClick={closeModal}
+                className="bg-gray-300 hover:bg-gray-400 text-gray-800 py-2 px-4 rounded-md"
+              >
+                Отмена
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </>
   );

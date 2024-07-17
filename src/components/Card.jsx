@@ -37,7 +37,7 @@ const Card = ({ item }) => {
       <div
         onMouseOver={() => setswaperHover(true)}
         onMouseLeave={() => setswaperHover(false)}
-        className="images w-[-webkit-fill-available] mx-auto rounded-[30px]"
+        className="images w-[-webkit-fill-available] mx-auto rounded-[10px]"
       >
         {swaperHover ? (
           <Swiper
@@ -68,14 +68,14 @@ const Card = ({ item }) => {
       <div className="flex-1 flex items-end pt-[10px]">
         <div className="flex justify-between w-full  items-center">
           <h6 className="text-[#1DBE60] font-[500]">
-            Цена: <span className="text-[#262D29]">{price}</span>
+            Цена: <span className="text-[#262D29]">{+(String(price).split('.')[0])}</span>
           </h6>
           <button
             onClick={(e) => {
               e.stopPropagation();
               addTooCart();
             }}
-            className=" border rounded-[20px]  px-4 py-2 border-[#1DBE60] flex"
+            className=" border rounded-[10px]  px-2 py-2 border-[#1DBE60] flex"
           >
             <span className="material-symbols-outlined text-[#b2b4bc]">
               {cart ? "close" : "shopping_cart"}
