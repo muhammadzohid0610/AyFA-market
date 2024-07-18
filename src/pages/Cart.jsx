@@ -98,9 +98,9 @@ const Cart = () => {
                   ></span>
                 </div>
               </div>
-              <div className="Cart__cards">
+              <div className="Cart__cards ">
                 {data.map((item) => (
-                  <OneCart key={item.id} setId={setId} item={item} />
+                  <OneCart  key={item.id} setId={setId} item={item} />
                 ))}
               </div>
             </div>
@@ -125,7 +125,7 @@ const Cart = () => {
           </div>
         ) : (
           <div className="flex-1 flex max-w-[1200px] mx-auto mt-[100px] w-full justify-center px-[15px]">
-            <div className="text-center">
+            <div className="text-center p-[35px]">
               <span className="material-symbols-outlined text-[#1DBE60] text-[100px]">
                 add_shopping_cart
               </span>

@@ -319,7 +319,9 @@ header {
 
 .Cart {
   .Cart__cards {
-
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
     &::-webkit-scrollbar {
       display: none;
     }
@@ -618,6 +620,7 @@ header {
 }
 
 .OneCart {
+  width: 47%;
   .img {
     width: 150px;
     background-repeat: no-repeat;
@@ -701,7 +704,6 @@ header {
 }
 
 .filter {
-  height: 791px;
   display: flex;
 
   ul {
@@ -864,7 +866,8 @@ header {
   }
 
   .close1 {
-    display: block;
+    display: flex;
+    justify-content: end;
   }
 
   .page_info {
@@ -922,3 +925,5 @@ header {
     }
   }
 }
+
+

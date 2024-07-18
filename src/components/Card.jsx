@@ -32,7 +32,7 @@ const Card = ({ item }) => {
   return (
     <div
       onClick={() => navigate(`/card/${id}`)}
-      className="card cursor-pointer flex flex-col  bg-[#d5e0da1a] border rounded-[30px] border-[#1DBE60] p-4"
+      className="card cursor-pointer flex flex-col  bg-[#d5e0da1a] border rounded-[8px] border-[#1DBE60] p-4"
     >
       <div
         onMouseOver={() => setswaperHover(true)}
@@ -58,7 +58,7 @@ const Card = ({ item }) => {
           </Swiper>
         ) : (
           <div
-            className="img w-[-webkit-fill-available] mx-auto rounded-[30px]"
+            className="img w-[-webkit-fill-available] mx-auto rounded-[8px]"
             style={{ backgroundImage: `url('${image}')` }}
           ></div>
         )}
