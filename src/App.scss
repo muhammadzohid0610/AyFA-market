@@ -613,14 +613,13 @@ header {
 
 .attributes {
   overflow-x: scroll;
-
   &::-webkit-scrollbar {
     display: none;
   }
 }
 
 .OneCart {
-  width: 47%;
+  width:100%;
   .img {
     width: 150px;
     background-repeat: no-repeat;
