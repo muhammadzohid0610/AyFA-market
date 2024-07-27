@@ -4,13 +4,13 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { getProducts, setCurrentPage } from "../store/slices/Product";
 import Logout from "./Logout";
 
-const ulStyle = "material-symbols-outlined text-2xl text-[#b2b4bc]";
+const ulStyle = "material-symbols-outlined text-3xl text-[#b2b4bc]";
 
 const Header = () => {
   const [state, setstate] = useState(false);
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem("user") || null)
-  );
+  )
 
   const dispatch = useDispatch();
   const searchRef = useRef(null);
@@ -66,9 +66,9 @@ const Header = () => {
   return (
     <>
       <header>
-        <div className="max-w-[1200px] px-[10px] items-center flex justify-between mx-auto py-6 relative">
-          <h3 className="text-5xl cursor-pointer font-medium text-[#22a357] pb-[20px]">
-            <Link to="/"> Ayfa</Link>
+        <div className="max-w-[1200px] px-[30px] items-center flex justify-between mx-auto py-6 relative">
+          <h3 className="text-5xl cursor-pointer font-medium text-[#22a357] ">
+            <Link to="/"> AYFA</Link>
           </h3>
 
           <nav>
@@ -84,7 +84,6 @@ const Header = () => {
                   <span className={`${ulStyle} text-[#b2b4bc]`}>
                     {!StateSearch ? "search" : "close"}
                   </span>
-                  <span className="text-base text-[#b2b4bc]">Поиск</span>
                 </li>
               )}
 
@@ -110,7 +109,6 @@ const Header = () => {
                   className="relative flex flex-col items-center justify-between"
                 >
                   <span className={ulStyle}>shopping_cart</span>
-                  <span className="text-base text-[#b2b4bc]">Корзина</span>
                   {data.length > 0 && (
                     <span className="absolute top-[-5px] left-[90%] text-[#1DBE60] p-[2px]">
                       {data.length}
@@ -149,7 +147,6 @@ const Header = () => {
                     <span className={`${ulStyle} text-[#b2b4bc]`}>
                       account_circle
                     </span>
-                    <span className="text-base text-[#b2b4bc]">Войти</span>
                   </Link>
                 </li>
               )}
