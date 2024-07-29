@@ -36,7 +36,8 @@ const Card = ({ item }) => {
     >
       <div
         onMouseOver={() => setswaperHover(true)}
-        onMouseLeave={() => setswaperHover(false)}
+        onMouseLeave={() => setswaperHover(false)} 
+         
         className="images w-[-webkit-fill-available] mx-auto rounded-[10px]"
       >
         {swaperHover ? (
